@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'jacoco'
 
 jacoco {
-    toolVersion = '0.8.1'
+    toolVersion = "$jacoco_version"
 }
 
 tasks.withType(Test) {
@@ -19,6 +19,7 @@ def VERSION_NAME = "0.0.1"
 
 android {
     compileSdkVersion 28
+
     defaultConfig {
         applicationId APPLICATION_ID
         minSdkVersion 22
@@ -28,10 +29,12 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         debug {
             testCoverageEnabled true
         }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -52,6 +55,7 @@ android {
     }
 
     testOptions {
+        //execution 'ANDROID_TEST_ORCHESTRATOR'
         animationsDisabled true
 
         unitTests {
@@ -75,6 +79,7 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
             '**/*Test*.*',
             'android/**/*.*'
     ]
+
     def debugTree = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
     def mainSrc = "$project.projectDir/src/main/kotlin"
 
