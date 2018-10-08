@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="app_name">Merge Reports</string>
+
+    <string name="button_test">test</string>
+
+    <string name="message_no_message">No message</string>
+    <string name="message_hello">Hello!</string>
+
+</resources>
